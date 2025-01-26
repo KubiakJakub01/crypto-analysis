@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bybit Market Data Analysis</title>
+</head>
+<body>
+    <h1>Bybit Market Data Analysis</h1>
+    
+    <form method="post">
+        <label>Symbol:</label>
+        <input type="text" name="symbol" required><br>
+        
+        <label>Interval:</label>
+        <input type="text" name="interval" required><br>
+        
+        <label>Start Time (ms):</label>
+        <input type="text" name="start_time" required><br>
+        
+        <label>End Time (ms):</label>
+        <input type="text" name="end_time" required><br>
+        
+        <button type="submit">Fetch & Analyze</button>
+    </form>
+
+    {% if plot_url %}
+        <h2>Market Data Plot</h2>
+        <img src="data:image/png;base64,{{ plot_url }}" alt="Market Data Plot">
+    {% endif %}
+
+    {% if signals %}
+        <h2>Trading Signals</h2>
+        <ul>
+            {% for signal in signals %}
+                <li>{{ signal }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</body>
+</html>
